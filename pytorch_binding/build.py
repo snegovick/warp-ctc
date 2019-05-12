@@ -45,21 +45,21 @@ warp_root = os.path.dirname(os.path.dirname(this_file))
 
 sources = ['src/warp_ctc.c']
 headers = ['src/warp_ctc.h']
-include_dirs = [os.path.join(warp_root, 'include')]
+include_dirs = [os.path.join(warp_root, 'include'), '/usr/include/lua5.1/']
 libraries = ['warpctc']
 library_dirs = [os.path.join(warp_root, 'build')]
 defines = []
 with_cuda = False
 
-if torch.cuda.is_available():
-    print('Including CUDA code.')
-    sources += ['src/warp_ctc_cuda.c']
-    headers += ['src/warp_ctc_cuda.h']
-    defines += [('WITH_CUDA', None)]
-    with_cuda = True
+#if torch.cuda.is_available():
+#    print('Including CUDA code.')
+#    sources += ['src/warp_ctc_cuda.c']
+#    headers += ['src/warp_ctc_cuda.h']
+#    defines += [('WITH_CUDA', None)]
+#    with_cuda = True
 
-    if len(sys.argv) > 1:
-        include_dirs += [sys.argv[1]]
+#    if len(sys.argv) > 1:
+#        include_dirs += [sys.argv[1]]
 
 setup(
     name='_ext.ctc',
